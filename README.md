@@ -1,2 +1,2 @@
 # javascript practice
- run using `node filename.js`
+ run using `node filename`
