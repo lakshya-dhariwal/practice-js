@@ -8,8 +8,7 @@ const run = async () => {
     const database = client.db();
     const db = database.collection("directory");
     console.log("MongoDB connected...");
-
-    createEntry(db, "Lorem", "9911991199");
+    createEntry(db, "Lorem", "9911991191");
     readEntry(db, "Gamma");
     updateEntry(db, "Beta","Alpha", "6611223355");
     deleteEntry(db, "alphabeta");
