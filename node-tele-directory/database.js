@@ -9,10 +9,10 @@ const run = async () => {
     const db = database.collection("directory");
     console.log("MongoDB connected...");
 
-    createEntry(db, "Lorem", "9911773355");
-    readEntry(db, "Lakshya");
-    // updateEntry(db, "Lakshya", "6611223355");
-     deleteEntry(db, "alphabeta");
+    createEntry(db, "Lorem", "9911991199");
+    readEntry(db, "Gamma");
+    updateEntry(db, "Beta","Alpha", "6611223355");
+    deleteEntry(db, "alphabeta");
   } catch (e) {
     console.log(e);
   }
@@ -21,7 +21,7 @@ const run = async () => {
 //create
 const createEntry = async (db, entryName, entryNumber) => {
   try {
-    if (!(await db.findOne({ number: entryNumber }))) {
+    if ((await db.findOne({ number: entryNumber }))) {
       console.log("An Entry already exists for this number");
       return;
     }
@@ -35,7 +35,6 @@ const createEntry = async (db, entryName, entryNumber) => {
   }
 };
 
-
 //read
 const readEntry = async (db, entryName) => {
   try {
@@ -46,14 +45,34 @@ const readEntry = async (db, entryName) => {
   }
 };
 
-//delete
-const deleteEntry = async (db, entryName) => {
+//update
+const updateEntry = async (db, entryName, newName, newNumber) => {
   try {
-    await db.deleteOne({ name: entryName });
-    console.log("Deleted Entry");
+    await db.updateOne(
+      { name: entryName },
+      { $set:
+      { name: newName, number: newNumber }}
+    );
+    console.log('Entry updated')
   } catch (err) {
     console.log(err);
   }
 };
 
-run();
+//delete
+const deleteEntry = async (db, entryName) => {
+  try {
+    await db.deleteOne({ name: entryName });
+    console.log("Entry Deleted");
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+try{
+  run();
+}catch (err) {
+  console.log(err);
+  console.log('500 Internal server error')
+}
+
