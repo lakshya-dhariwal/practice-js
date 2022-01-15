@@ -9,7 +9,7 @@ const publisher = async () => {
     });
     const sent = channel.sendToQueue(
       queueSlug,
-      Buffer.from("Team Lakshya Checked In"),
+      Buffer.from("Team Blah Checked In"),
       {
         persistent: true,
       }
